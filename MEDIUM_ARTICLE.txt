@@ -1,0 +1,63 @@
+I Benchmarked Selecting What My Chatbot Remembers. Speed Wasn't the Point.
+
+Prefix caching makes full chat history hard to beat on latency — until the context window runs out and the model quietly starts forgetting.
+
+Every time you send a message to a chatbot, the whole conversation usually goes back to the model. Turn fifty carries turns one through forty-nine along with it. That feels wasteful, and it's the obvious thing to optimize: instead of resending everything, keep the history yourself and send only the parts that matter for the current question. Ask for the capital of France, and the model doesn't need the twenty turns you spent on photosynthesis.
+
+I built that — I'll call it managed context — and benchmarked it honestly on a local machine. The result surprised me, and it turned out to be a better lesson than the one I went in expecting.
+
+The idea, and why it's familiar
+
+There's a clean way to think about this. A language model's attention looks at every token in its context, exactly, at a cost that grows with length. State space models like Mamba do the opposite: they keep a small, fixed-size summary and update it as they go — cheap, but lossy. Managed context is that same tradeoff moved up a level, out of the weights and into the plumbing around the model. The full transcript is the exact-but-expensive store. A short running index of summaries is the compressed state. And a selector decides, for each new turn, which old turns to actually pull back in.
+
+So the design is small: store every turn; for a new prompt, pick the relevant past turns plus the last couple for continuity; answer over just those. Keep it all outside the model, with no retraining, so you can test the policy cheaply.
+
+The first result: it lost
+
+I ran a conversation through two ways, turn by turn, and timed both: once with the full history, once with managed context. The managed version was about two and a half times slower.
+
+The reason is a feature you don't notice until you measure it: prefix caching. Because a chat history only ever grows by appending, each turn shares a long prefix with the previous one. The server caches that prefix and only does real work on the new tokens, so feeding the entire history back costs almost nothing — it stayed flat at around four seconds even as the conversation grew. Managed context, by selecting a different subset every turn, breaks that shared prefix. It has to re-process its context from scratch each time, even though that context is smaller. On top of that, it pays for a second model call to do the selection. Smaller but uncached, plus an extra call, lost to bigger but cached.
+
+There was also a bug worth naming, because others will hit it. My first selector was the same large model that did the answering — and that model was a reasoning model. Given a tight token budget to emit its choice, it spent the whole budget thinking and returned nothing. Selection came back empty every single turn, silently. The fix was to give it room to think and a format that ends with the answer. The deeper lesson: don't use a reasoning model for a quick selection step.
+
+The correction: a fast selector changes the picture
+
+So I swapped the selector. Instead of asking a language model which turns to include, I embedded each turn with a small embedding model and retrieved the most similar ones — ordinary vector search, about forty milliseconds a turn. That is the realistic production choice anyway.
+
+Now managed context ran neck and neck with full history, both around two to three seconds, while keeping its context bounded — a couple hundred tokens against a full history that kept climbing. The earlier loss had nothing to do with managed context. It was the slow selector. Remove it and the approach is latency-neutral and keeps the prompt small.
+
+But neck and neck is not a win. So where does managed context actually pay off?
+
+The window is the whole story
+
+I pinned the model to a small context window — four thousand tokens — so I could reach its limit in a short experiment, and grew a conversation past it. Two things happened.
+
+First, full history kept winning on speed for a long time. Even after crossing the window it stayed fast, around two and a half seconds. Only once the conversation was about one and a half times past the window did full history finally slow down, to five and a half seconds, while managed context held steady near three. That is the latency crossover, and it sits much further out than "the context got big."
+
+Second, and this is the real finding: once a conversation passes the window, full history does not error or stop. It silently truncates the oldest turns to fit. It keeps answering fast — by forgetting.
+
+To make that concrete, I ran a needle test. I planted a code in the very first turn — ZEPHYR-7-MAGENTA — then padded the conversation until the transcript was well past the window, and asked for the code back.
+
+Full history had lost turn one to truncation. Its answer was "ZEPHYR-" — literally a fragment, chopped off at the exact point where the truncation boundary cut through the code. It kept a corrupted scrap of the thing it used to know.
+
+Managed context embedded the question, found that first turn by meaning, pulled it back in, and answered ZEPHYR-7-MAGENTA — correct, from four hundred and seventy-nine tokens of context.
+
+What it is actually for
+
+Here is the conclusion I did not expect when I started. Managed context is not a speed optimization. Prefix caching makes append-only full history very hard to beat on latency, and for most normal-length conversations you should just send the whole thing.
+
+Managed context is a memory mechanism. Its value shows up exactly where full history fails: past the context window, where the model is quietly dropping your earliest, possibly most important turns. Selecting what to keep lets you remember things that fell off the end, and you keep the prompt small while doing it.
+
+So the design that falls out is a hybrid. Track the token count. While the history fits comfortably inside the window, send all of it and let prefix caching do its job. As you approach the window, switch to managed context with a fast embedding selector and a small recency anchor, so you keep remembering past the edge. Latency is roughly a wash until then; capability is the win after.
+
+And two smaller lessons that cost me time: do not use a reasoning model for a fast selection step, and do not trust your intuition about prefix caching — measure it, because it quietly decides which approach wins.
+
+The code
+
+It is all open, runnable, and dependency-free against any OpenAI-compatible endpoint, so it talks to a local Ollama just as happily as a hosted API:
+
+https://github.com/MikeyBeez/managed-context
+
+The repo has the memory layer, both benchmarks, the needle test, and the full results writeup. If you run it, the thing to watch for is where your own setup's crossover lands — it depends entirely on your model, your window, and whether your server caches prefixes.
+
+I went in trying to make a chatbot faster by sending less. I came out with something that is not faster but remembers more — and a much clearer picture of why the obvious optimization is not one.
