@@ -1,0 +1,430 @@
+{
+  "summary": {
+    "answer_model": "gemma4-ctx4k",
+    "embed_model": "nomic-embed-text",
+    "num_ctx": 4096,
+    "turns": 30,
+    "crossover_turn": 3,
+    "ceiling_turn": 20,
+    "final_full_tok": 6120,
+    "avg_embed_s": 0.038
+  },
+  "records": [
+    {
+      "turn": 1,
+      "full_tok": 252,
+      "managed_tok": 252,
+      "full_s": 26.86,
+      "managed_s": 1.85,
+      "embed_s": 0.0,
+      "answer_s": 1.85,
+      "picked": [],
+      "note": ""
+    },
+    {
+      "turn": 2,
+      "full_tok": 458,
+      "managed_tok": 458,
+      "full_s": 2.16,
+      "managed_s": 2.19,
+      "embed_s": 0.032,
+      "answer_s": 2.16,
+      "picked": [
+        1
+      ],
+      "note": ""
+    },
+    {
+      "turn": 3,
+      "full_tok": 661,
+      "managed_tok": 661,
+      "full_s": 2.24,
+      "managed_s": 2.01,
+      "embed_s": 0.127,
+      "answer_s": 1.88,
+      "picked": [
+        1,
+        2
+      ],
+      "note": "CROSSOVER"
+    },
+    {
+      "turn": 4,
+      "full_tok": 865,
+      "managed_tok": 865,
+      "full_s": 2.14,
+      "managed_s": 2.2,
+      "embed_s": 0.067,
+      "answer_s": 2.14,
+      "picked": [
+        1,
+        2
+      ],
+      "note": ""
+    },
+    {
+      "turn": 5,
+      "full_tok": 1070,
+      "managed_tok": 1070,
+      "full_s": 2.29,
+      "managed_s": 1.92,
+      "embed_s": 0.034,
+      "answer_s": 1.88,
+      "picked": [
+        1,
+        2
+      ],
+      "note": ""
+    },
+    {
+      "turn": 6,
+      "full_tok": 1273,
+      "managed_tok": 864,
+      "full_s": 2.18,
+      "managed_s": 2.63,
+      "embed_s": 0.034,
+      "answer_s": 2.6,
+      "picked": [
+        1,
+        5
+      ],
+      "note": ""
+    },
+    {
+      "turn": 7,
+      "full_tok": 1477,
+      "managed_tok": 1069,
+      "full_s": 2.55,
+      "managed_s": 3.16,
+      "embed_s": 0.057,
+      "answer_s": 3.1,
+      "picked": [
+        2,
+        4
+      ],
+      "note": ""
+    },
+    {
+      "turn": 8,
+      "full_tok": 1681,
+      "managed_tok": 864,
+      "full_s": 2.44,
+      "managed_s": 3.01,
+      "embed_s": 0.033,
+      "answer_s": 2.98,
+      "picked": [
+        4,
+        7
+      ],
+      "note": ""
+    },
+    {
+      "turn": 9,
+      "full_tok": 1878,
+      "managed_tok": 1062,
+      "full_s": 2.54,
+      "managed_s": 3.14,
+      "embed_s": 0.034,
+      "answer_s": 3.1,
+      "picked": [
+        1,
+        5
+      ],
+      "note": ""
+    },
+    {
+      "turn": 10,
+      "full_tok": 2083,
+      "managed_tok": 1065,
+      "full_s": 2.46,
+      "managed_s": 3.28,
+      "embed_s": 0.033,
+      "answer_s": 3.25,
+      "picked": [
+        2,
+        5
+      ],
+      "note": ""
+    },
+    {
+      "turn": 11,
+      "full_tok": 2287,
+      "managed_tok": 1061,
+      "full_s": 2.62,
+      "managed_s": 3.34,
+      "embed_s": 0.033,
+      "answer_s": 3.31,
+      "picked": [
+        3,
+        6
+      ],
+      "note": ""
+    },
+    {
+      "turn": 12,
+      "full_tok": 2491,
+      "managed_tok": 1070,
+      "full_s": 2.46,
+      "managed_s": 3.47,
+      "embed_s": 0.032,
+      "answer_s": 3.44,
+      "picked": [
+        4,
+        8
+      ],
+      "note": ""
+    },
+    {
+      "turn": 13,
+      "full_tok": 2686,
+      "managed_tok": 1052,
+      "full_s": 2.66,
+      "managed_s": 3.5,
+      "embed_s": 0.035,
+      "answer_s": 3.47,
+      "picked": [
+        7,
+        9
+      ],
+      "note": ""
+    },
+    {
+      "turn": 14,
+      "full_tok": 2889,
+      "managed_tok": 1057,
+      "full_s": 2.48,
+      "managed_s": 3.4,
+      "embed_s": 0.033,
+      "answer_s": 3.36,
+      "picked": [
+        1,
+        6
+      ],
+      "note": ""
+    },
+    {
+      "turn": 15,
+      "full_tok": 3093,
+      "managed_tok": 1059,
+      "full_s": 2.58,
+      "managed_s": 3.67,
+      "embed_s": 0.033,
+      "answer_s": 3.64,
+      "picked": [
+        7,
+        12
+      ],
+      "note": ""
+    },
+    {
+      "turn": 16,
+      "full_tok": 3297,
+      "managed_tok": 1068,
+      "full_s": 2.48,
+      "managed_s": 3.63,
+      "embed_s": 0.034,
+      "answer_s": 3.6,
+      "picked": [
+        8,
+        12
+      ],
+      "note": ""
+    },
+    {
+      "turn": 17,
+      "full_tok": 3492,
+      "managed_tok": 1052,
+      "full_s": 2.64,
+      "managed_s": 3.65,
+      "embed_s": 0.034,
+      "answer_s": 3.61,
+      "picked": [
+        1,
+        9
+      ],
+      "note": ""
+    },
+    {
+      "turn": 18,
+      "full_tok": 3698,
+      "managed_tok": 1064,
+      "full_s": 2.46,
+      "managed_s": 3.9,
+      "embed_s": 0.033,
+      "answer_s": 3.87,
+      "picked": [
+        2,
+        10
+      ],
+      "note": ""
+    },
+    {
+      "turn": 19,
+      "full_tok": 3901,
+      "managed_tok": 1061,
+      "full_s": 2.65,
+      "managed_s": 11.76,
+      "embed_s": 0.035,
+      "answer_s": 11.72,
+      "picked": [
+        3,
+        11
+      ],
+      "note": ""
+    },
+    {
+      "turn": 20,
+      "full_tok": 4105,
+      "managed_tok": 1070,
+      "full_s": 2.55,
+      "managed_s": 3.95,
+      "embed_s": 0.036,
+      "answer_s": 3.92,
+      "picked": [
+        4,
+        12
+      ],
+      "note": "WINDOW EXCEEDED"
+    },
+    {
+      "turn": 21,
+      "full_tok": 4301,
+      "managed_tok": 849,
+      "full_s": 2.68,
+      "managed_s": 12.02,
+      "embed_s": 0.037,
+      "answer_s": 11.98,
+      "picked": [
+        9,
+        19
+      ],
+      "note": ""
+    },
+    {
+      "turn": 22,
+      "full_tok": 4504,
+      "managed_tok": 1057,
+      "full_s": 2.44,
+      "managed_s": 4.0,
+      "embed_s": 0.035,
+      "answer_s": 3.97,
+      "picked": [
+        6,
+        14
+      ],
+      "note": ""
+    },
+    {
+      "turn": 23,
+      "full_tok": 4707,
+      "managed_tok": 1058,
+      "full_s": 2.67,
+      "managed_s": 4.12,
+      "embed_s": 0.034,
+      "answer_s": 4.09,
+      "picked": [
+        7,
+        15
+      ],
+      "note": ""
+    },
+    {
+      "turn": 24,
+      "full_tok": 4912,
+      "managed_tok": 1069,
+      "full_s": 2.52,
+      "managed_s": 4.17,
+      "embed_s": 0.034,
+      "answer_s": 4.14,
+      "picked": [
+        8,
+        16
+      ],
+      "note": ""
+    },
+    {
+      "turn": 25,
+      "full_tok": 5108,
+      "managed_tok": 1045,
+      "full_s": 2.66,
+      "managed_s": 4.34,
+      "embed_s": 0.037,
+      "answer_s": 4.31,
+      "picked": [
+        9,
+        17
+      ],
+      "note": ""
+    },
+    {
+      "turn": 26,
+      "full_tok": 5314,
+      "managed_tok": 1066,
+      "full_s": 5.49,
+      "managed_s": 3.21,
+      "embed_s": 0.035,
+      "answer_s": 3.17,
+      "picked": [
+        10,
+        18
+      ],
+      "note": ""
+    },
+    {
+      "turn": 27,
+      "full_tok": 5517,
+      "managed_tok": 1062,
+      "full_s": 5.53,
+      "managed_s": 3.21,
+      "embed_s": 0.035,
+      "answer_s": 3.18,
+      "picked": [
+        11,
+        19
+      ],
+      "note": ""
+    },
+    {
+      "turn": 28,
+      "full_tok": 5721,
+      "managed_tok": 1070,
+      "full_s": 5.51,
+      "managed_s": 3.2,
+      "embed_s": 0.036,
+      "answer_s": 3.17,
+      "picked": [
+        12,
+        20
+      ],
+      "note": ""
+    },
+    {
+      "turn": 29,
+      "full_tok": 5917,
+      "managed_tok": 1044,
+      "full_s": 5.54,
+      "managed_s": 3.22,
+      "embed_s": 0.037,
+      "answer_s": 3.19,
+      "picked": [
+        13,
+        25
+      ],
+      "note": ""
+    },
+    {
+      "turn": 30,
+      "full_tok": 6120,
+      "managed_tok": 1057,
+      "full_s": 5.61,
+      "managed_s": 3.19,
+      "embed_s": 0.037,
+      "answer_s": 3.15,
+      "picked": [
+        14,
+        22
+      ],
+      "note": ""
+    }
+  ]
+}

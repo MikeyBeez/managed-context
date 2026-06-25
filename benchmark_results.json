@@ -1,0 +1,139 @@
+{
+  "summary": {
+    "model": "gemma4:26b",
+    "turns": 8,
+    "total_full_s": 56.03,
+    "total_managed_s": 151.1,
+    "overall_speedup": 0.37,
+    "second_half_speedup": 0.19,
+    "avg_full_tokens": 109,
+    "avg_managed_tokens": 84,
+    "token_reduction": 0.229
+  },
+  "records": [
+    {
+      "turn": 1,
+      "prompt": "Explain how photosynthesis works, in plain terms.",
+      "full_s": 28.28,
+      "managed_s": 20.65,
+      "select_s": 0.0,
+      "answer_s": 20.65,
+      "full_tok": 61,
+      "managed_tok": 61,
+      "selected_ids": [],
+      "anchor_ids": [],
+      "speedup": 1.37
+    },
+    {
+      "turn": 2,
+      "prompt": "Now explain cellular respiration and how it differs.",
+      "full_s": 3.97,
+      "managed_s": 23.88,
+      "select_s": 2.25,
+      "answer_s": 21.63,
+      "full_tok": 74,
+      "managed_tok": 74,
+      "selected_ids": [],
+      "anchor_ids": [
+        1
+      ],
+      "speedup": 0.17
+    },
+    {
+      "turn": 3,
+      "prompt": "Switch topics: name three classic dishes from Paris.",
+      "full_s": 4.14,
+      "managed_s": 13.16,
+      "select_s": 2.25,
+      "answer_s": 10.91,
+      "full_tok": 87,
+      "managed_tok": 87,
+      "selected_ids": [],
+      "anchor_ids": [
+        1,
+        2
+      ],
+      "speedup": 0.31
+    },
+    {
+      "turn": 4,
+      "prompt": "What is the capital of France?",
+      "full_s": 2.75,
+      "managed_s": 5.72,
+      "select_s": 2.26,
+      "answer_s": 3.46,
+      "full_tok": 95,
+      "managed_tok": 82,
+      "selected_ids": [],
+      "anchor_ids": [
+        2,
+        3
+      ],
+      "speedup": 0.48
+    },
+    {
+      "turn": 5,
+      "prompt": "Write a Python function to reverse a singly linked list.",
+      "full_s": 4.2,
+      "managed_s": 23.98,
+      "select_s": 2.3,
+      "answer_s": 21.67,
+      "full_tok": 117,
+      "managed_tok": 92,
+      "selected_ids": [],
+      "anchor_ids": [
+        3,
+        4
+      ],
+      "speedup": 0.18
+    },
+    {
+      "turn": 6,
+      "prompt": "Rewrite that function to be iterative instead of recursive.",
+      "full_s": 4.19,
+      "managed_s": 21.84,
+      "select_s": 2.33,
+      "answer_s": 19.51,
+      "full_tok": 132,
+      "managed_tok": 94,
+      "selected_ids": [],
+      "anchor_ids": [
+        4,
+        5
+      ],
+      "speedup": 0.19
+    },
+    {
+      "turn": 7,
+      "prompt": "Go back to photosynthesis: what role does chlorophyll play?",
+      "full_s": 4.24,
+      "managed_s": 17.55,
+      "select_s": 2.3,
+      "answer_s": 15.25,
+      "full_tok": 147,
+      "managed_tok": 92,
+      "selected_ids": [],
+      "anchor_ids": [
+        5,
+        6
+      ],
+      "speedup": 0.24
+    },
+    {
+      "turn": 8,
+      "prompt": "Summarize the three Paris dishes you listed earlier.",
+      "full_s": 4.26,
+      "managed_s": 24.32,
+      "select_s": 2.33,
+      "answer_s": 21.99,
+      "full_tok": 160,
+      "managed_tok": 91,
+      "selected_ids": [],
+      "anchor_ids": [
+        6,
+        7
+      ],
+      "speedup": 0.18
+    }
+  ]
+}

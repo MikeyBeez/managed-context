@@ -1,0 +1,12 @@
+# internal / not for publication
+continuation-notes/
+CONTINUATION.md
+# scratch + superseded
+diag_select.py
+diag2.py
+seltest.py
+benchmark_long.py
+# runtime
+memory.json
+*_memory.json
+__pycache__/
